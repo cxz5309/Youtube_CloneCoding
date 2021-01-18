@@ -3,14 +3,9 @@ import morgan from "morgan";
 import helmet from "helmet";   
 import cookieParser from "cookie-parser";   
 import bodyParser from "body-parser";   
+import {userRouter} from "./router"
 
 const app = express();
-
-const PORT = 4000;
-
-const handleListeining = () => {
-   console.log("Listening on: http:loaclhost:${PORT}");
-}
 
 const handleHome = (req, res)=>{
     console.log("Hello!");
@@ -39,4 +34,6 @@ app.get("/", handleHome);
 
 app.get("/profile", handleProfile)
 
-app.listen(PORT, handleListeining);
+app.use("/user", userRouter);
+
+export default app;

@@ -2,9 +2,8 @@
   "name": "tube",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node app.js --delay 2",
+    "start": "nodemon --exec babel-node init.js --delay 2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
