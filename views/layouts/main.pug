@@ -1,10 +1,10 @@
 doctype html   
 html
     head
-        title tube
-        <script src="node_modules/@fortawesome/js/all.js"></script>    
-    body    
-        header
+        title #{pageTitle} | #{siteName}
+        link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp", crossorigin="anonymous")
+    body
+        include ../partials/header
             h1 Hello!
         main
             block content
