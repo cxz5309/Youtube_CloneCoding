@@ -10,7 +10,7 @@ const SEARCH = "/search";
 
 const USERS = "/users";
 const USER_DETAIL = "/:id";
-const EDIT_PROFILE = "edit-profile";
+const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 
 //Videos
@@ -28,7 +28,13 @@ const routes = {
     logout:LOUOUT,
     search:SEARCH,
     users:USERS,
-    userDetail:USER_DETAIL,
+    userDetail: id => {
+        if (id) {
+          return `/users/${id}`;
+        } else {
+          return USER_DETAIL;
+        }
+      },
     editProfile:EDIT_PROFILE,
     changePassword:CHANGE_PASSWORD,
     videos:VIDEOS,
