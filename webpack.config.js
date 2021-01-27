@@ -6,6 +6,7 @@ const MODE = process.env.WEBPACK_ENV;
 const ENTRY_FILR = path.resolve(__dirname, "assets", 'js', 'main.js');
 module.exports = {
     mode: MODE,
+    devtool: 'cheap-module-source-map',
     entry: ["@babel/polyfill", ENTRY_FILR],
     module: {
         rules: [
