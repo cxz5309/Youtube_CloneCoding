@@ -1,6 +1,7 @@
 import routes from "../routes";
 import Video from "../models/Video";
 import User from "../models/User";
+import Comment from "../models/Comment";
 // Home
 
 export const home = async (req, res) => {
@@ -85,7 +86,7 @@ export const videoDetail = async (req, res) => {
     }
   } = req;
   try {
-    const video = await Video.findById(id).populate("creator");
+    const video = await Video.findById(id).populate("creator").populate("comments");
     console.log("video------")
     console.log(video);
     res.render("videoDetail", {
@@ -170,3 +171,49 @@ export const deleteVideo = async (req, res) => {
   }
   res.redirect(routes.home);
 };
+
+// register video view
+
+export const postRegisterView = async(req, res) =>{
+  const{
+    params:{id}
+  } = req;
+  try{
+    const video = await Video.findById(id);
+    video.views += 1;
+    video.save();
+    res.status(200);
+  }
+  catch(error){
+    res.status(400);
+  }
+  finally{
+    res.end();
+  }
+}
+
+// add comment
+
+export const postAddComment = async(req, res) =>{
+  console.log("들어오는가");
+  const{
+    params:{id},
+    body:{comment},
+    user
+  } = req;
+  try{
+      const video = await Video.findById(id);
+      const newComment = await Comment.create({
+      text: comment,
+      creator: user.id
+    });
+    video.comments.push(newComment.id);
+    video.save();
+  }
+  catch{
+    res.status(400);
+  }
+  finally{
+    res.end();
+  }
+}
